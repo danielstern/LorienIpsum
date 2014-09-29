@@ -15,7 +15,13 @@
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
+    <link href='http://fonts.googleapis.com/css?family=Calligraffitti' rel='stylesheet' type='text/css'>
   </head>
+  <style>
+    .jumbotron {
+      font-family: 'Calligraffitti', cursive;
+    }
+  </style>
   <body>
     <!--[if lt IE 10]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
@@ -23,25 +29,28 @@
 
 
     <div class="container">
-      <div class="header">
+<!--       <div class="header">
         <ul class="nav nav-pills pull-right">
           <li class="active"><a href="#">Home</a></li>
           <li><a href="#">About</a></li>
           <li><a href="#">Contact</a></li>
         </ul>
-        <h3 class="text-muted">Lorien Ipsum - Filler Tall and Fair for Placement Most Any Where</h3>
-      </div>
+        <h3 class="text-muted">Lorien Ipsum - Filler Tall and Fair</h3>
+      </div> -->
+
 
       <div class="jumbotron">
+        <img src=http://us.cdn001.fansshare.com/photos/orlandobloom/moonlit-memories-final-legolas-218784010.jpg title='{{paragraphs[0][0][0]}}'>
         <h1>Lorien Ipsum</h1>
         <p class="lead">Tall and Fair Filler for Your Designs</p>
-        <p><a class="btn btn-lg btn-success" href="#">Mellon! <span class="glyphicon glyphicon-ok"></span></a></p>
+        <p><a class="btn btn-lg btn-success" ng-click="run()">Mellon! <span class="glyphicon glyphicon-star"></span></a></p>
+        <!-- <p style='font-size:14px;font-family:arial'> Hover over things to see their meaning!</p> -->
       </div>
 
       <div class="row marketing">
         <p ng-repeat='paragraph in paragraphs'>
           <span ng-repeat='sentence in paragraph' title='{{sentence[1]}}'>
-             {{sentence[0]}}
+             {{sentence[0] + " "}} 
           </span>
         </p>
         <!-- paragraphs? -->

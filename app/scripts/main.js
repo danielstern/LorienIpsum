@@ -366,9 +366,11 @@ angular.module("lorienIpsum", [])
 
   $scope.run = function(paragraphCount) {
 
-  	var sentencesPerParagraph = 24
+  	console.log("Running!");
 
-  	paragraphCount = paragraphCount || 5;
+  	var sentencesPerParagraph = 12;
+
+  	paragraphCount = paragraphCount || 10;
   	$scope.paragraphs = [];
   	for (var i = 0; i < paragraphCount; i++ ) {
   		var paragraph = [];
