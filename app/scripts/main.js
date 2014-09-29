@@ -1,5 +1,5 @@
-angular.module("lorienIpsum", [])
-.controller("Main",function($scope){
+angular.module("lorienIpsum", ['ngAudio'])
+.controller("Main",["$scope",function($scope){
 	var elvishSayingsAndMeanings = [
    "A star shall shine on the hour of our meeting",
    "Elen sila lumenn omentilmo",
@@ -393,4 +393,4 @@ angular.module("lorienIpsum", [])
 
 
 
-})
+}]);
