@@ -17,9 +17,10 @@
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
     <link href='http://fonts.googleapis.com/css?family=Calligraffitti' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,500' rel='stylesheet' type='text/css'>
 </head>
 <style>
-.jumbotron {
+.jumbotron, .lead {
     font-family: 'Calligraffitti', cursive;
 }
 .capitalize-true {
@@ -29,6 +30,10 @@ body {
     /*      background-image: url('elves.jpg');
       background-size: cover;
       background-opacity: 10%;*/
+}
+
+p, select, label {
+  font-family: 'Roboto', sans-serif;
 }
 </style>
 
@@ -50,13 +55,29 @@ body {
             <h1>Lorien Ipsum</h1>
             <p class="lead">Elvish Lorem Ipsum - Tall and fair filler for your crafts</p>
             <div class=row>
-            <div class='col-xs-6'>
+            <div class='col-xs-6 form-horizontal'>
               <form class=form-inline>
-              <label class=form-label for=paragraphs> Paragraphs 
+                <div class=form-group>
+              <label class=form-label for=paragraphs> Give me paragraphs  
               </label>
-                <select ng-change=run(options) ng-model=options.paragraph class=form-control name=paragraphs ng-options='value for value in [1,2,3,4]'>
+                <select ng-change=run(options) ng-model=options.paragraphs class=form-control name=paragraphs ng-options='value for value in [1,2,3,4,5,6,7,8]'>
                     
-                </select>
+                </select> , 
+              </div>
+              <div class=form-group>
+                <label class=form-label for=paragraphs> And in each, sentences  
+                </label>
+                  <select ng-change=run(options) ng-model=options.sentences class=form-control name=sentences ng-options='value for value in [1,2,3,4,5,6,7,8,9,10,11,12]'>
+                      
+                  </select>
+                </div>
+                <div class=form-group>
+                  <label class=form-label for=paragraphs> In the language of   
+                  </label>
+                    <select ng-change=run(options) ng-model=options.language class=form-control name=sentences ng-options='value for value in ["elvish","english"]'>
+                        
+                    </select>
+                  </div>
               </form>
             </div>
             <div class='col-xs-6'>
@@ -70,13 +91,26 @@ body {
         <div class="row marketing">
             <p ng-repeat='paragraph in paragraphs'>
                 <span ng-repeat='sentence in paragraph'>
-                    <span ng-repeat='particle in sentence' class=capitalize-{{particle.capitalized}} title='{{particle.english}}' ng-bind="particle.elvish">
-                        Elvish Lorem Ipsum for all your crafts and merry songs.
+                    <span ng-repeat='particle in sentence' class=capitalize-{{particle.capitalized}} title='{{options.language == "elvish" ? particle.english : particle.elvish}}' ng-bind="particle[options.language]">
                     </span>
                 </span>
             </p>
+          <div ng-show=false>
+            <p>
+              Elvish Lorem Ipsum for all your crafts and merry songs.
+            </p>
+
+            <p>
+              Lle lava manke naa lye lle autien soora sen ta uuma ma' ten' rashwe, ta tuluva a' lle. Anarya tanya Laara'tincoras ho. Taur'ohtar Ianterea malia ten' fion laure sereg he. Nai turamin Andodulin Ear'quessir manke naa nae lle? Tel'Domeduathea elen sila lumenn omentilmo onta vasa rima ten'ta!.
+            </p>
+
+            <p>
+              Swordmaster you are a skillful bowman Impetous ones may the wind fill your sails. Thursday where did that come from Neverwinter Woods Starlit woods curse. I hate you My foes Spring Festival minor globe. Could you cast invis on me meteor swarm i know your strength in battle Neverwinter Woods Starlit woods. Flank them poison field Illusionist The Night Masks.
+            </p>
+          </div>
         </div>
 
+          
 
         <!-- build:js(.) scripts/vendor.js -->
         <!-- bower:js -->

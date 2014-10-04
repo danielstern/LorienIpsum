@@ -883,9 +883,13 @@ angular.module("lorienIpsum", ['ngAudio'])
         var particlesPerSentence = 4;
         var paragraphCount = 3;
 
-        var randomness = 3;
+        var randomness = 0;
 
-        $scope.settings = {};
+        $scope.options = {
+          paragraphs:3,
+          sentences:5,
+          language: 'elvish'
+        };
 
         // var dictionary = [];
 
@@ -908,7 +912,12 @@ angular.module("lorienIpsum", ['ngAudio'])
             }
         })
 
-        $scope.run = function() {
+        $scope.run = function(options) {
+
+          if (!options) options = $scope.options;
+          var _paragraphs = options.paragraphs;
+          var _sentences = options.sentences;
+          // var 
 
             function capitaliseFirstLetter(string) {
                 return string.charAt(0).toUpperCase() + string.slice(1);
@@ -932,9 +941,9 @@ angular.module("lorienIpsum", ['ngAudio'])
             }
 
             $scope.paragraphs = [];
-            for (var i = 0; i < paragraphCount + random(); i++) {
+            for (var i = 0; i < _paragraphs + random(); i++) {
                 var paragraph = [];
-                for (var j = 0; j < sentencesPerParagraph + random(); j++) {
+                for (var j = 0; j < _sentences + random(); j++) {
                     var sentence = []
                     for (var k = 0; k < particlesPerSentence + random(); k++) {
                         var particle = _.sample(sayingPairs);
@@ -946,20 +955,25 @@ angular.module("lorienIpsum", ['ngAudio'])
                         saying = _.clone(val);
                         if (index === 0) {
                             saying.elvish = capitaliseFirstLetter(saying.elvish);
+                            saying.english = capitaliseFirstLetter(saying.english);
                         } else if (saying.elvish.match(/[\s]/)) {
                             saying.elvish = saying.elvish.toLowerCase();
+                            saying.english = saying.english.toLowerCase();
                         }
 
                         if (index != sentence.length - 1) {
 
                             if (containsPunctuation(getLastLetter(saying.elvish))) {
                                 saying.elvish = saying.elvish.substring(0, saying.elvish.length - 1);
+                                saying.english = saying.english.substring(0, saying.english.length - 1);
                             }
 
                             saying.elvish = saying.elvish + " ";
+                            saying.english = saying.english + " ";
 
                         } else if (!containsPunctuation(saying.elvish)) {
                             saying.elvish = saying.elvish + ".";
+                            saying.english = saying.english + ".";
                         }
 
 
