@@ -1,6 +1,7 @@
 <!doctype html>
 <html class="no-js" ng-app=lorienIpsum ng-controller=Main>
-  <head>
+
+<head>
     <meta charset="utf-8">
     <title>Lorien Ipsum - Filler Tall and Fair for Placement Most Any Where</title>
     <meta name="description" content="Lorien Ipsum - Filler Tall and Fair for Placement Most Any Where">
@@ -16,26 +17,25 @@
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
     <link href='http://fonts.googleapis.com/css?family=Calligraffitti' rel='stylesheet' type='text/css'>
-  </head>
-  <style>
-    .jumbotron {
-      font-family: 'Calligraffitti', cursive;
-    }
-
-    body {
-/*      background-image: url('elves.jpg');
+</head>
+<style>
+.jumbotron {
+    font-family: 'Calligraffitti', cursive;
+}
+.capitalize-true {
+    /*text-transform: capitalize;*/
+}
+body {
+    /*      background-image: url('elves.jpg');
       background-size: cover;
       background-opacity: 10%;*/
-    }
-  </style>
-  <body>
-    <!--[if lt IE 10]>
-      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    <![endif]-->
+}
+</style>
 
+<body>
 
     <div class="container">
-<!--       <div class="header">
+        <!--       <div class="header">
         <ul class="nav nav-pills pull-right">
           <li class="active"><a href="#">Home</a></li>
           <li><a href="#">About</a></li>
@@ -45,46 +45,66 @@
       </div> -->
 
 
-      <div class="jumbotron">
-        <img src=legolas.jpg title='{{paragraphs[0][0][0]}}'>
-        <h1>Lorien Ipsum</h1>
-        <p class="lead">Elvish Lorem Ipsum - Tall and fair filler for your crafts</p>
-        <p><a class="btn btn-lg btn-success" ng-click="run()" ng-audio=magic-chime-02.mp3>Mellon! <span class="glyphicon glyphicon-star"></span></a></p>
-        <!-- <p style='font-size:14px;font-family:arial'> Hover over things to see their meaning!</p> -->
-      </div>
+        <div class="jumbotron">
+            <img src=legolas.jpg title='{{paragraphs[0][0][0].elvish}}' width='340px'>
+            <h1>Lorien Ipsum</h1>
+            <p class="lead">Elvish Lorem Ipsum - Tall and fair filler for your crafts</p>
+            <div class=row>
+            <div class='col-xs-6'>
+              <form class=form-inline>
+              <label class=form-label for=paragraphs> Paragraphs 
+              </label>
+                <select ng-change=run(options) ng-model=options.paragraph class=form-control name=paragraphs ng-options='value for value in [1,2,3,4]'>
+                    
+                </select>
+              </form>
+            </div>
+            <div class='col-xs-6'>
+                <a class="btn btn-lg btn-success" ng-click="run()" ng-audio=magic-chime-02.mp3>Mellon! <span class="glyphicon glyphicon-star"></span></a>
+                
+            </div>
+          </div>
+            <!-- <p style='font-size:14px;font-family:arial'> Hover over things to see their meaning!</p> -->
+        </div>
 
-      <div class="row marketing">
-        <p ng-repeat='paragraph in paragraphs'>
-          <span ng-repeat='sentence in paragraph'>
-            <span ng-repeat='particle in sentence' title='{{particle[1]}}' ng-bind="particle[0]">
-                Elvish Lorem Ipsum for all your crafts and merry songs.
-            </span>
-          </span>
-        </p>
-    </div>
+        <div class="row marketing">
+            <p ng-repeat='paragraph in paragraphs'>
+                <span ng-repeat='sentence in paragraph'>
+                    <span ng-repeat='particle in sentence' class=capitalize-{{particle.capitalized}} title='{{particle.english}}' ng-bind="particle.elvish">
+                        Elvish Lorem Ipsum for all your crafts and merry songs.
+                    </span>
+                </span>
+            </p>
+        </div>
 
 
-    <!-- build:js(.) scripts/vendor.js -->
-    <!-- bower:js -->
-    <script src="bower_components/jquery/dist/jquery.js"></script>
-    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
-    <script src="bower_components/angular/angular.js"></script>
-    <script src="bower_components/underscore/underscore.js"></script>
-    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
-    <script src="bower_components/angular-audio/angular.audio.js"></script>
-    <!-- endbower -->
-    <!-- endbuild -->
+        <!-- build:js(.) scripts/vendor.js -->
+        <!-- bower:js -->
+        <script src="bower_components/jquery/dist/jquery.js"></script>
+        <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="bower_components/angular/angular.js"></script>
+        <script src="bower_components/underscore/underscore.js"></script>
+        <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+        <script src="bower_components/angular-audio/angular.audio.js"></script>
+        <!-- endbower -->
+        <!-- endbuild -->
 
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        <script>
+        (function(i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function() {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
 
-  ga('create', 'UA-40501021-16', 'auto');
-  ga('send', 'pageview');
-
-</script>
+        ga('create', 'UA-40501021-16', 'auto');
+        ga('send', 'pageview');
+        </script>
         <!-- build:js(.) scripts/plugins.js -->
         <script src="bower_components/bootstrap/js/affix.js"></script>
         <script src="bower_components/bootstrap/js/alert.js"></script>
@@ -104,4 +124,5 @@
         <script src="scripts/main.js"></script>
         <!-- endbuild -->
 </body>
+
 </html>
