@@ -55,13 +55,12 @@
 
       <div class="row marketing">
         <p ng-repeat='paragraph in paragraphs'>
-          <span ng-repeat='sentence in paragraph' title='{{sentence[1]}}' ng-bind="sentence[0] + ' '">
-             <!-- {{sentence[0] + " "}}  -->
-             Elvish Lorem Ipsum for all your crafts and merry songs.
+          <span ng-repeat='sentence in paragraph'>
+            <span ng-repeat='particle in sentence' title='{{particle[1]}}' ng-bind="particle[0]">
+                Elvish Lorem Ipsum for all your crafts and merry songs.
+            </span>
           </span>
         </p>
-        <!-- paragraphs? -->
-        <!-- {{paragraphs}} -->
     </div>
 
 

@@ -1,5 +1,5 @@
 angular.module("lorienIpsum", ['ngAudio'])
-.controller("Main",["$scope",function($scope){
+.controller("Main",["$scope",function($scope,$filter){
 	var elvishSayingsAndMeanings = [
    "  A star shall shine on the hour of our meeting",
 "Elen sila lumenn omentilmo",
@@ -1732,6 +1732,8 @@ angular.module("lorienIpsum", ['ngAudio'])
 
   var sayings = [];
   var meanings = [];
+  var sentencesPerParagraph = 6;
+  var particlesPerSentence = 4;
 
   for (var i =0; i < elvishSayingsAndMeanings.length;i++) {
   	var thing = elvishSayingsAndMeanings[i];
@@ -1746,25 +1748,47 @@ angular.module("lorienIpsum", ['ngAudio'])
 
   $scope.run = function(paragraphCount) {
 
-  	console.log("Running!");
+    function capitaliseFirstLetter(string)
+    {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    }
 
-  	var sentencesPerParagraph = 12;
-
-  	paragraphCount = paragraphCount || 10;
+  	paragraphCount = paragraphCount || 5;
   	$scope.paragraphs = [];
   	for (var i = 0; i < paragraphCount; i++ ) {
   		var paragraph = [];
   		for (var j = sentencesPerParagraph - 1; j >= 0; j--) {
-  			var sentence = _.sample(sayingPairs);
+        var sentence = []
+        for (var k = particlesPerSentence - 1; k > 0; k--) {
+          var particle = _.sample(sayingPairs);  
+          sentence.push(particle);
+        };
+
+        sentence = _.uniq(sentence);
+        // sentence[0][0] = capitaliseFirstLetter(sentence[0][0]);
+        sentence = sentence.map(function(val,index){
+          if (index === 0) {
+            val[0] = capitaliseFirstLetter(val[0]);
+          } else {
+            val[0] = val[0].toLowerCase();
+          }
+
+          if (index != sentence.length) {
+            val[0] = val[0] + " ";
+          } else if (val[0].indexOf('?') < 0) {
+            val[0] = val[0] + ".";
+          }
+
+
+
+          return val;
+        })
   			paragraph.push(sentence);
   		};
 
   		paragraph = _.uniq(paragraph);
-
   		$scope.paragraphs.push(paragraph);
   	}
-
-  	return _.sample(sayings,15).join(" ");
   };
 
   $scope.run();
@@ -1774,3 +1798,4 @@ angular.module("lorienIpsum", ['ngAudio'])
 
 
 }]);
+
